@@ -3,7 +3,7 @@ import { Linkedin, Mail, ArrowUp } from "lucide-react";
 const SOCIALS = [
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/ethanhood9",
+    href: "https://www.linkedin.com/in/ethanhood6",
     icon: Linkedin,
     external: true,
   },
@@ -63,7 +63,7 @@ export default function Footer() {
               <span>Email</span>
             </a>
             <a
-              href="https://www.linkedin.com/in/ethanhood9"
+              href="https://www.linkedin.com/in/ethanhood6"
               target="_blank"
               rel="noreferrer"
               className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-[#CFAE70]/60 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1C1C1C]"

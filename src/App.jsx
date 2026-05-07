@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white text-[#1C1C1C] antialiased font-sans selection:bg-[#CFAE70]/30 selection:text-[#1C1C1C]">
+    <div className="min-h-screen bg-white text-[#1C1C1C] antialiased font-sans selection:bg-[#CFAE70]/30 selection:text-[#1C1C1C] dark:bg-[#0E0E10] dark:text-white dark:selection:bg-[#CFAE70]/40 dark:selection:text-white">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-[#1C1C1C] focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white focus:outline-none focus:ring-2 focus:ring-[#CFAE70]"

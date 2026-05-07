@@ -33,10 +33,10 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative isolate scroll-mt-24 bg-[#FAFAFA] py-24 sm:py-32"
+      className="relative isolate scroll-mt-24 bg-[#FAFAFA] py-24 dark:bg-[#121215] sm:py-32"
     >
       {/* faint top fade into hero */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent dark:from-[#0E0E10]" />
 
       <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         {/* Section header */}
@@ -47,15 +47,15 @@ export default function About() {
           transition={{ duration: 0.6, ease }}
           className="mb-14 flex flex-col items-start gap-3 sm:mb-16"
         >
-          <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155]">
+          <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155] dark:text-white/60">
             <span className="h-px w-8 bg-[#CFAE70]" />
             01 — About
           </div>
-          <h2 className="font-serif text-4xl font-semibold tracking-tight text-[#1C1C1C] sm:text-5xl md:text-6xl">
-            A study in <em className="italic text-[#1C1C1C]">precision</em>
+          <h2 className="font-serif text-4xl font-semibold tracking-tight text-[#1C1C1C] dark:text-white sm:text-5xl md:text-6xl">
+            A study in <em className="italic text-[#1C1C1C] dark:text-white">precision</em>
             <span className="text-[#CFAE70]">.</span>
           </h2>
-          <p className="max-w-xl text-base leading-relaxed text-[#475569]">
+          <p className="max-w-xl text-base leading-relaxed text-[#475569] dark:text-white/65">
             Engineering rigor sharpened by business intuition — and a life
             shaped equally by mountains, courts, and kitchens.
           </p>
@@ -70,7 +70,6 @@ export default function About() {
             tone="dark"
           >
             <div className="relative flex h-full flex-col justify-between p-7 sm:p-9">
-              {/* Decorative gold ring */}
               <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#CFAE70]/25" />
               <div className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full border border-[#CFAE70]/15" />
 
@@ -92,11 +91,7 @@ export default function About() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-                  <Stat
-                    value="4.0"
-                    label="GPA"
-                    accent
-                  />
+                  <Stat value="4.0" label="GPA" accent />
                   <Stat value="Dean's List" label="Honors" />
                   <Stat value="ME + Biz" label="Track" />
                 </div>
@@ -105,13 +100,13 @@ export default function About() {
           </BentoCard>
 
           {/* Locations */}
-          <BentoCard index={1} className="lg:col-span-2 lg:row-span-1">
+          <BentoCard index={1} className="lg:col-span-2 lg:row-span-2">
             <div className="flex h-full flex-col justify-between p-6">
               <div className="flex items-center gap-3">
                 <IconBubble>
                   <MapPin className="h-5 w-5 text-[#CFAE70]" strokeWidth={2} />
                 </IconBubble>
-                <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155]">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155] dark:text-white/60">
                   Dual Presence
                 </span>
               </div>
@@ -125,14 +120,14 @@ export default function About() {
           </BentoCard>
 
           {/* Interests — full-width strip */}
-          <BentoCard index={3} className="lg:col-span-6">
+          <BentoCard index={2} className="lg:col-span-6">
             <div className="flex h-full flex-col gap-6 p-6 sm:p-7">
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <IconBubble>
                     <Sparkles className="h-5 w-5 text-[#CFAE70]" strokeWidth={2} />
                   </IconBubble>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155]">
+                  <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155] dark:text-white/60">
                     Interests & Pursuits
                   </span>
                 </div>
@@ -168,11 +163,10 @@ function BentoCard({ children, className = "", tone = "light", index = 0 }) {
         "group relative overflow-hidden rounded-2xl border transition-shadow duration-300",
         dark
           ? "border-white/10 bg-[#1C1C1C] text-white shadow-[0_1px_0_rgba(255,255,255,0.04)_inset,0_10px_30px_-12px_rgba(0,0,0,0.45)] hover:shadow-[0_1px_0_rgba(255,255,255,0.06)_inset,0_24px_60px_-20px_rgba(0,0,0,0.55)]"
-          : "border-black/[0.06] bg-white shadow-[0_1px_0_rgba(0,0,0,0.02),0_1px_2px_rgba(0,0,0,0.04)] hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_18px_40px_-20px_rgba(28,28,28,0.18)]",
+          : "border-black/[0.06] bg-white shadow-[0_1px_0_rgba(0,0,0,0.02),0_1px_2px_rgba(0,0,0,0.04)] hover:shadow-[0_1px_0_rgba(0,0,0,0.02),0_18px_40px_-20px_rgba(28,28,28,0.18)] dark:border-white/[0.08] dark:bg-[#1A1A1D] dark:shadow-[0_1px_0_rgba(255,255,255,0.03)_inset,0_10px_30px_-12px_rgba(0,0,0,0.5)] dark:hover:shadow-[0_1px_0_rgba(255,255,255,0.05)_inset,0_24px_60px_-20px_rgba(0,0,0,0.6)]",
         className,
       ].join(" ")}
     >
-      {/* gold sheen on hover */}
       <span
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-[#CFAE70] to-transparent transition-transform duration-500 ease-out group-hover:scale-x-100"
@@ -190,7 +184,7 @@ function IconBubble({ children, tone = "light" }) {
         "inline-flex h-9 w-9 items-center justify-center rounded-lg border",
         dark
           ? "border-white/10 bg-white/[0.04]"
-          : "border-black/[0.06] bg-[#FAFAFA]",
+          : "border-black/[0.06] bg-[#FAFAFA] dark:border-white/[0.08] dark:bg-white/[0.04]",
       ].join(" ")}
     >
       {children}
@@ -219,19 +213,16 @@ function Stat({ value, label, accent = false }) {
 function CityRow({ city, region, code }) {
   return (
     <div className="flex items-center gap-3">
-      <span className="relative flex h-2 w-2">
-        <span className="absolute inline-flex h-full w-full motion-safe:animate-ping rounded-full bg-[#CFAE70] opacity-60" />
-        <span className="relative inline-flex h-2 w-2 rounded-full bg-[#CFAE70]" />
-      </span>
+      <span className="relative inline-flex h-2 w-2 flex-none rounded-full bg-[#CFAE70]" />
       <div className="flex-1">
-        <div className="text-base font-semibold text-[#1C1C1C]">
+        <div className="text-base font-semibold text-[#1C1C1C] dark:text-white">
           {city}
-          <span className="ml-2 text-xs font-normal text-[#334155]">
+          <span className="ml-2 text-xs font-normal text-[#334155] dark:text-white/60">
             {region}
           </span>
         </div>
       </div>
-      <span className="rounded-md border border-black/[0.06] bg-[#FAFAFA] px-1.5 py-0.5 font-mono text-[11px] font-semibold tracking-wider text-[#334155]">
+      <span className="rounded-md border border-black/[0.06] bg-[#FAFAFA] px-1.5 py-0.5 font-mono text-[11px] font-semibold tracking-wider text-[#334155] dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-white/70">
         {code}
       </span>
     </div>
@@ -247,12 +238,12 @@ function InterestPill({ item, delay }) {
       viewport={{ once: true }}
       transition={{ duration: 0.45, ease, delay }}
       whileHover={{ y: -2 }}
-      className="group/pill relative flex items-center gap-3 overflow-hidden rounded-xl border border-black/[0.06] bg-[#FAFAFA] px-4 py-3.5 transition-colors duration-200 hover:border-[#CFAE70]/50 hover:bg-white"
+      className="group/pill relative flex items-center gap-3 overflow-hidden rounded-xl border border-black/[0.06] bg-[#FAFAFA] px-4 py-3.5 transition-colors duration-200 hover:border-[#CFAE70]/50 hover:bg-white dark:border-white/[0.08] dark:bg-white/[0.03] dark:hover:border-[#CFAE70]/50 dark:hover:bg-white/[0.06]"
     >
-      <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-white text-[#CFAE70] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-transform duration-300 group-hover/pill:scale-110">
+      <span className="inline-flex h-8 w-8 flex-none items-center justify-center rounded-lg bg-white text-[#CFAE70] shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-transform duration-300 group-hover/pill:scale-110 dark:bg-white/[0.08] dark:shadow-none">
         <Icon className="h-4 w-4" strokeWidth={2.25} />
       </span>
-      <span className="text-sm font-medium leading-tight text-[#1C1C1C]">
+      <span className="text-sm font-medium leading-tight text-[#1C1C1C] dark:text-white">
         {item.label}
       </span>
     </motion.div>

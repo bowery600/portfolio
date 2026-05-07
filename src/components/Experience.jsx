@@ -114,7 +114,7 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative isolate scroll-mt-24 bg-white py-24 sm:py-32"
+      className="relative isolate scroll-mt-24 bg-white py-24 dark:bg-[#0E0E10] sm:py-32"
     >
       <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         {/* Section header */}
@@ -125,16 +125,16 @@ export default function Experience() {
           transition={{ duration: 0.6, ease }}
           className="mb-16 flex flex-col items-start gap-3 sm:mb-20"
         >
-          <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155]">
+          <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155] dark:text-white/60">
             <span className="h-px w-8 bg-[#CFAE70]" />
             02 — Experience
           </div>
-          <h2 className="font-serif text-4xl font-semibold tracking-tight text-[#1C1C1C] sm:text-5xl md:text-6xl">
+          <h2 className="font-serif text-4xl font-semibold tracking-tight text-[#1C1C1C] dark:text-white sm:text-5xl md:text-6xl">
             A track record across{" "}
             <em className="italic">capital, code, and clay</em>
             <span className="text-[#CFAE70]">.</span>
           </h2>
-          <p className="max-w-xl text-base leading-relaxed text-[#475569]">
+          <p className="max-w-xl text-base leading-relaxed text-[#475569] dark:text-white/65">
             From soldering soft-robotic boards to underwriting early-stage
             ventures — each role sharpened a different blade.
           </p>
@@ -142,16 +142,16 @@ export default function Experience() {
 
         {/* Timeline */}
         <div ref={trackRef} className="relative">
-          {/* Rail (background) */}
+          {/* Rail (background) — aligned to node center: 40px node / 2 = 20px (sm: 48/2 = 24px) */}
           <div
             aria-hidden
-            className="pointer-events-none absolute left-[19px] top-2 bottom-2 w-px bg-gradient-to-b from-black/[0.06] via-black/[0.08] to-transparent sm:left-[23px]"
+            className="pointer-events-none absolute left-5 top-2 bottom-2 w-px bg-gradient-to-b from-black/[0.06] via-black/[0.08] to-transparent dark:from-white/[0.10] dark:via-white/[0.08] dark:to-transparent sm:left-6"
           />
           {/* Rail (gold progress) */}
           <motion.div
             aria-hidden
             style={reduce ? { height: "100%" } : { height: lineHeight }}
-            className="pointer-events-none absolute left-[19px] top-2 w-px bg-gradient-to-b from-[#CFAE70] via-[#CFAE70]/70 to-[#CFAE70]/0 sm:left-[23px]"
+            className="pointer-events-none absolute left-5 top-2 w-px bg-gradient-to-b from-[#CFAE70] via-[#CFAE70]/70 to-[#CFAE70]/0 sm:left-6"
           />
 
           <ol className="space-y-12 sm:space-y-16">
@@ -184,10 +184,10 @@ function TimelineItem({ exp, index }) {
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, ease, delay: 0.05 }}
         className={[
-          "group relative overflow-hidden rounded-2xl border bg-white transition-all duration-500",
+          "group relative overflow-hidden rounded-2xl border bg-white transition-all duration-500 dark:bg-[#16161A]",
           inView
-            ? "border-[#CFAE70]/45 shadow-[0_1px_0_rgba(0,0,0,0.02),0_28px_60px_-28px_rgba(207,174,112,0.45)]"
-            : "border-black/[0.06] shadow-[0_1px_0_rgba(0,0,0,0.02),0_2px_4px_rgba(0,0,0,0.03)]",
+            ? "border-[#CFAE70]/45 shadow-[0_1px_0_rgba(0,0,0,0.02),0_28px_60px_-28px_rgba(207,174,112,0.45)] dark:border-[#CFAE70]/55"
+            : "border-black/[0.06] shadow-[0_1px_0_rgba(0,0,0,0.02),0_2px_4px_rgba(0,0,0,0.03)] dark:border-white/[0.08] dark:shadow-[0_1px_0_rgba(255,255,255,0.03)_inset,0_8px_24px_-12px_rgba(0,0,0,0.5)]",
         ].join(" ")}
       >
         {/* gold accent edge */}
@@ -201,17 +201,17 @@ function TimelineItem({ exp, index }) {
 
         <div className="p-6 sm:p-8">
           {/* Meta row */}
-          <div className="flex flex-wrap items-center gap-2 text-[12px] font-medium text-[#334155]">
-            <span className="rounded-full border border-black/[0.08] bg-[#FAFAFA] px-2.5 py-1 font-mono uppercase tracking-wider tabular-nums">
+          <div className="flex flex-wrap items-center gap-2 text-[12px] font-medium text-[#334155] dark:text-white/65">
+            <span className="rounded-full border border-black/[0.08] bg-[#FAFAFA] px-2.5 py-1 font-mono uppercase tracking-wider tabular-nums dark:border-white/[0.08] dark:bg-white/[0.04]">
               {exp.period}
             </span>
-            <span className="text-black/15">·</span>
+            <span className="text-black/15 dark:text-white/25">·</span>
             <span className="inline-flex items-center gap-1">
               <MapPin className="h-3 w-3" strokeWidth={2.25} />
               {exp.location}
             </span>
-            <span className="text-black/15">·</span>
-            <span className="rounded-full bg-[#CFAE70]/12 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#8a6f3a]">
+            <span className="text-black/15 dark:text-white/25">·</span>
+            <span className="rounded-full bg-[#CFAE70]/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-[#8a6f3a] dark:bg-[#CFAE70]/15 dark:text-[#CFAE70]">
               {exp.type}
             </span>
           </div>
@@ -219,10 +219,10 @@ function TimelineItem({ exp, index }) {
           {/* Headline */}
           <div className="mt-4 flex items-start justify-between gap-4">
             <div>
-              <h3 className="font-serif text-2xl font-semibold leading-tight text-[#1C1C1C] sm:text-[28px]">
+              <h3 className="font-serif text-2xl font-semibold leading-tight text-[#1C1C1C] dark:text-white sm:text-[28px]">
                 {exp.company}
               </h3>
-              <div className="mt-1.5 text-sm font-medium text-[#475569] sm:text-base">
+              <div className="mt-1.5 text-sm font-medium text-[#475569] dark:text-white/65 sm:text-base">
                 {exp.role}
               </div>
             </div>
@@ -231,14 +231,14 @@ function TimelineItem({ exp, index }) {
                 "mt-1 hidden h-5 w-5 flex-none transition-all duration-500 sm:block",
                 inView
                   ? "translate-x-0 -translate-y-0 text-[#CFAE70] opacity-100"
-                  : "-translate-x-1 translate-y-1 text-[#475569] opacity-50",
+                  : "-translate-x-1 translate-y-1 text-[#475569] opacity-50 dark:text-white/55",
               ].join(" ")}
               strokeWidth={2}
             />
           </div>
 
           {/* Summary */}
-          <p className="mt-5 text-[15px] leading-relaxed text-[#475569]">
+          <p className="mt-5 text-[15px] leading-relaxed text-[#475569] dark:text-white/65">
             {exp.summary}
           </p>
 
@@ -247,7 +247,7 @@ function TimelineItem({ exp, index }) {
             {exp.bullets.map((b, i) => (
               <li
                 key={i}
-                className="flex items-start gap-3 text-[14.5px] leading-relaxed text-[#1C1C1C]/85"
+                className="flex items-start gap-3 text-[14.5px] leading-relaxed text-[#1C1C1C]/85 dark:text-white/80"
               >
                 <span
                   aria-hidden
@@ -259,16 +259,16 @@ function TimelineItem({ exp, index }) {
           </ul>
 
           {/* Metrics strip */}
-          <div className="mt-7 grid grid-cols-3 divide-x divide-black/[0.06] overflow-hidden rounded-xl border border-black/[0.06] bg-[#FAFAFA]">
+          <div className="mt-7 grid grid-cols-3 divide-x divide-black/[0.06] overflow-hidden rounded-xl border border-black/[0.06] bg-[#FAFAFA] dark:divide-white/[0.06] dark:border-white/[0.06] dark:bg-white/[0.03]">
             {exp.metrics.map((m) => (
               <div
                 key={m.label}
                 className="px-4 py-3.5 text-center sm:py-4"
               >
-                <div className="font-serif text-xl font-semibold leading-none tracking-tight tabular-nums text-[#1C1C1C] sm:text-2xl">
+                <div className="font-serif text-xl font-semibold leading-none tracking-tight tabular-nums text-[#1C1C1C] dark:text-white sm:text-2xl">
                   {m.value}
                 </div>
-                <div className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#334155]">
+                <div className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#334155] dark:text-white/60">
                   {m.label}
                 </div>
               </div>
@@ -288,10 +288,7 @@ function Node({ active, Icon }) {
       {/* outer halo */}
       <motion.span
         aria-hidden
-        animate={{
-          scale: active ? 1 : 0.6,
-          opacity: active ? 1 : 0,
-        }}
+        animate={{ scale: active ? 1 : 0.6, opacity: active ? 1 : 0 }}
         transition={{ duration: 0.5, ease }}
         className="absolute -inset-2 rounded-full bg-[#CFAE70]/25 blur-md"
       />
@@ -305,20 +302,20 @@ function Node({ active, Icon }) {
       {/* node */}
       <motion.span
         animate={{
-          backgroundColor: active ? "#CFAE70" : "#FFFFFF",
-          borderColor: active ? "#CFAE70" : "rgba(28,28,28,0.15)",
           boxShadow: active
             ? "0 0 0 4px rgba(207,174,112,0.18), 0 6px 16px -4px rgba(207,174,112,0.55)"
             : "0 0 0 4px rgba(0,0,0,0), 0 1px 2px rgba(0,0,0,0.06)",
         }}
         transition={{ duration: 0.45, ease }}
-        className="relative flex h-10 w-10 items-center justify-center rounded-full border sm:h-12 sm:w-12"
+        className={[
+          "relative flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-500 sm:h-12 sm:w-12",
+          active
+            ? "border-[#CFAE70] bg-[#CFAE70] text-[#1C1C1C]"
+            : "border-black/15 bg-white text-[#475569] dark:border-white/[0.18] dark:bg-[#1A1A1D] dark:text-white/75",
+        ].join(" ")}
       >
         <motion.span
-          animate={{
-            color: active ? "#1C1C1C" : "#475569",
-            scale: active ? 1.05 : 1,
-          }}
+          animate={{ scale: active ? 1.05 : 1 }}
           transition={{ duration: 0.4, ease }}
           className="inline-flex"
         >

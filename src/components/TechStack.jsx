@@ -70,15 +70,29 @@ export default function TechStack() {
   return (
     <section
       id="stack"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-white py-24 sm:py-32"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-white py-24 dark:bg-[#0E0E10] sm:py-32"
     >
       {/* Engineering grid backdrop */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.5]"
+        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.5] dark:hidden"
         style={{
           backgroundImage:
             "linear-gradient(to right, rgba(28,28,28,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(28,28,28,0.045) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
+          maskImage:
+            "radial-gradient(ellipse at center, rgba(0,0,0,0.9) 25%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at center, rgba(0,0,0,0.9) 25%, transparent 75%)",
+        }}
+      />
+      {/* Dark grid */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 hidden opacity-[0.55] dark:block"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px)",
           backgroundSize: "64px 64px",
           maskImage:
             "radial-gradient(ellipse at center, rgba(0,0,0,0.9) 25%, transparent 75%)",
@@ -101,15 +115,15 @@ export default function TechStack() {
           transition={{ duration: 0.6, ease }}
           className="mb-14 flex flex-col items-start gap-3 sm:mb-20"
         >
-          <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155]">
+          <div className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155] dark:text-white/60">
             <span className="h-px w-8 bg-[#CFAE70]" />
             Tech Stack
           </div>
-          <h2 className="font-serif text-4xl font-semibold tracking-tight text-[#1C1C1C] sm:text-5xl md:text-6xl">
+          <h2 className="font-serif text-4xl font-semibold tracking-tight text-[#1C1C1C] dark:text-white sm:text-5xl md:text-6xl">
             The <em className="italic">working set</em>
             <span className="text-[#CFAE70]">.</span>
           </h2>
-          <p className="max-w-xl text-base leading-relaxed text-[#475569]">
+          <p className="max-w-xl text-base leading-relaxed text-[#475569] dark:text-white/65">
             Tools sharpened across CAD benches, control loops, and AI
             workflows — chosen for the job, not the brand.
           </p>
@@ -149,21 +163,21 @@ function GroupPanel({ group, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, ease, delay: index * 0.08 }}
-      className="group relative overflow-hidden rounded-2xl border border-black/[0.06] bg-[#FAFAFA] p-6 transition-all duration-500 hover:border-[#CFAE70]/35 hover:shadow-[0_24px_50px_-24px_rgba(207,174,112,0.35)] sm:p-7"
+      className="group relative overflow-hidden rounded-2xl border border-black/[0.06] bg-[#FAFAFA] p-6 transition-all duration-500 hover:border-[#CFAE70]/35 hover:shadow-[0_24px_50px_-24px_rgba(207,174,112,0.35)] dark:border-white/[0.08] dark:bg-[#16161A] dark:hover:border-[#CFAE70]/45 sm:p-7"
     >
       {/* Header */}
       <div className="flex items-start justify-between gap-3">
         <div>
-          <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155]">
+          <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155] dark:text-white/60">
             <span className="font-mono text-[#CFAE70]">{group.code}</span>
             <span className="h-px w-6 bg-[#CFAE70]/50" />
             {group.title}
           </div>
-          <p className="mt-3 max-w-[28ch] text-sm leading-relaxed text-[#475569]">
+          <p className="mt-3 max-w-[28ch] text-sm leading-relaxed text-[#475569] dark:text-white/65">
             {group.blurb}
           </p>
         </div>
-        <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-black/[0.06] bg-white text-[#CFAE70]">
+        <span className="inline-flex h-10 w-10 flex-none items-center justify-center rounded-lg border border-black/[0.06] bg-white text-[#CFAE70] dark:border-white/[0.08] dark:bg-white/[0.04]">
           <Icon className="h-5 w-5" strokeWidth={2} />
         </span>
       </div>
@@ -231,15 +245,26 @@ function HexTile({ item, index, groupIndex }) {
         <div
           className="group/tile relative h-full w-full transition-transform duration-300 ease-out hover:scale-[1.06]"
         >
-          {/* Border layer */}
+          {/* Border layer (light) */}
           <div
             aria-hidden
-            className="absolute inset-0 transition-[background] duration-300"
+            className="absolute inset-0 transition-[background] duration-300 dark:hidden"
             style={{
               clipPath: HEX_CLIP,
               WebkitClipPath: HEX_CLIP,
               background:
                 "linear-gradient(160deg, rgba(28,28,28,0.10) 0%, rgba(28,28,28,0.06) 50%, rgba(28,28,28,0.10) 100%)",
+            }}
+          />
+          {/* Border layer (dark) */}
+          <div
+            aria-hidden
+            className="absolute inset-0 hidden transition-[background] duration-300 dark:block"
+            style={{
+              clipPath: HEX_CLIP,
+              WebkitClipPath: HEX_CLIP,
+              background:
+                "linear-gradient(160deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.16) 100%)",
             }}
           />
           <div
@@ -265,16 +290,16 @@ function HexTile({ item, index, groupIndex }) {
 
           {/* Inner face (sits above border, holds content) */}
           <div
-            className="absolute inset-[1.5px] flex flex-col items-center justify-center bg-white transition-[background] duration-300 group-hover/tile:bg-[linear-gradient(160deg,#FFFFFF_0%,#FFF6E2_100%)]"
+            className="absolute inset-[1.5px] flex flex-col items-center justify-center bg-white transition-[background] duration-300 group-hover/tile:bg-[linear-gradient(160deg,#FFFFFF_0%,#FFF6E2_100%)] dark:bg-[#1A1A1D] dark:group-hover/tile:bg-[linear-gradient(160deg,#1A1A1D_0%,#2A2418_100%)]"
             style={{
               clipPath: HEX_CLIP,
               WebkitClipPath: HEX_CLIP,
             }}
           >
-            <span className="mb-1.5 inline-flex h-7 w-7 items-center justify-center text-[#475569] transition-colors duration-300 group-hover/tile:text-[#CFAE70]">
+            <span className="mb-1.5 inline-flex h-7 w-7 items-center justify-center text-[#475569] transition-colors duration-300 group-hover/tile:text-[#CFAE70] dark:text-white/70">
               <Icon className="h-[18px] w-[18px]" strokeWidth={2} />
             </span>
-            <span className="px-2 text-center text-[11px] font-semibold leading-tight tracking-tight text-[#1C1C1C]">
+            <span className="px-1.5 text-center text-[10.5px] font-semibold leading-[1.1] tracking-tight text-[#1C1C1C] dark:text-white">
               {item.name}
             </span>
           </div>
