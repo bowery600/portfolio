@@ -36,7 +36,7 @@ export default function Hero() {
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-white pt-28 dark:bg-[#0E0E10] lg:pt-32"
     >
       <GridBackdrop reduce={reduce} />
-      <SplineScene scene="/scene-clean.splinecode" side="full" />
+      <SplineScene scene="/scene.splinecode" side="full" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-10">
         <motion.div
