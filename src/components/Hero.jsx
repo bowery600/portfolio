@@ -23,6 +23,7 @@ const rise = {
 export default function Hero() {
   const reduce = useReducedMotion();
   const [i, setI] = useState(0);
+  const [bgReady, setBgReady] = useState(false);
 
   useEffect(() => {
     if (reduce) return;
@@ -36,13 +37,21 @@ export default function Hero() {
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-white pt-28 dark:bg-[#0E0E10] lg:pt-32"
     >
       <GridBackdrop reduce={reduce} />
-      <SplineScene scene="/scene-clean.splinecode" side="full" />
       <SplineScene
-        scene="/scene.splinecode"
-        side="left"
-        shiftClass="lg:-translate-x-16 xl:-translate-x-24"
+        scene="/scene-clean.splinecode"
+        side="full"
+        onReady={() => setBgReady(true)}
       />
-      <SplineScene scene="/scene-right.splinecode" side="right" />
+      {bgReady && (
+        <>
+          <SplineScene
+            scene="/scene.splinecode"
+            side="left"
+            shiftClass="lg:-translate-x-16 xl:-translate-x-24"
+          />
+          <SplineScene scene="/scene-right.splinecode" side="right" />
+        </>
+      )}
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-10">
         <motion.div

@@ -8,6 +8,7 @@ export default function SplineScene({
   side = "left",
   shiftClass = "",
   zClass = "z-0",
+  onReady,
 }) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
@@ -67,7 +68,10 @@ export default function SplineScene({
           <Suspense fallback={null}>
             <Spline
               scene={scene}
-              onLoad={() => setLoaded(true)}
+              onLoad={() => {
+              setLoaded(true);
+              onReady?.();
+            }}
               style={{ width: "100%", height: "100%" }}
             />
           </Suspense>
@@ -100,7 +104,10 @@ export default function SplineScene({
         <Suspense fallback={null}>
           <Spline
             scene={scene}
-            onLoad={() => setLoaded(true)}
+            onLoad={() => {
+              setLoaded(true);
+              onReady?.();
+            }}
             style={{ width: "100%", height: "100%" }}
           />
         </Suspense>
