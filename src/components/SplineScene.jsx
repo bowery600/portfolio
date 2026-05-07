@@ -57,7 +57,8 @@ export default function SplineScene({
       <div
         ref={wrapRef}
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 ${zClass} ${shiftClass}`}
+        style={{ zIndex: 0 }}
+        className={`pointer-events-none absolute inset-0 ${shiftClass}`}
       >
         <div
           ref={canvasRef}
@@ -89,7 +90,8 @@ export default function SplineScene({
     <div
       ref={wrapRef}
       aria-hidden="true"
-      className={`pointer-events-none absolute inset-y-0 z-0 hidden w-1/2 lg:block ${sideClass} ${shiftClass}`}
+      style={{ zIndex: 1 }}
+      className={`pointer-events-none absolute inset-y-0 hidden w-1/2 lg:block ${sideClass} ${shiftClass}`}
     >
       <div
         ref={canvasRef}
