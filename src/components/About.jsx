@@ -7,8 +7,6 @@ import {
   Compass,
   Sprout,
   ChefHat,
-  Plane,
-  Snowflake,
   Sparkles,
 } from "lucide-react";
 
@@ -126,48 +124,6 @@ export default function About() {
             </div>
           </BentoCard>
 
-          {/* Global Perspective */}
-          <BentoCard index={2} className="lg:col-span-2 lg:row-span-1">
-            <div className="flex h-full flex-col justify-between p-6">
-              <div className="flex items-center gap-3">
-                <IconBubble>
-                  <Plane className="h-5 w-5 text-[#CFAE70]" strokeWidth={2} />
-                </IconBubble>
-                <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#334155]">
-                  Global Perspective
-                </span>
-              </div>
-
-              <ul className="mt-6 space-y-3">
-                <li className="flex items-start gap-3">
-                  <Snowflake className="mt-0.5 h-4 w-4 flex-none text-[#475569]" strokeWidth={2} />
-                  <div>
-                    <div className="text-sm font-medium text-[#1C1C1C]">
-                      Maine
-                    </div>
-                    <div className="text-xs text-[#334155]">
-                      Recent ski trips
-                    </div>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Sparkles className="mt-0.5 h-4 w-4 flex-none text-[#CFAE70]" strokeWidth={2} />
-                  <div>
-                    <div className="flex items-center gap-2 text-sm font-medium text-[#1C1C1C]">
-                      Israel
-                      <span className="rounded-full bg-[#CFAE70]/15 px-2 py-[2px] text-[10px] font-semibold uppercase tracking-wider text-[#8a6f3a]">
-                        May 2026
-                      </span>
-                    </div>
-                    <div className="text-xs text-[#334155]">
-                      Upcoming travel
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </BentoCard>
-
           {/* Interests — full-width strip */}
           <BentoCard index={3} className="lg:col-span-6">
             <div className="flex h-full flex-col gap-6 p-6 sm:p-7">
@@ -180,9 +136,6 @@ export default function About() {
                     Interests & Pursuits
                   </span>
                 </div>
-                <span className="hidden font-serif text-sm italic text-[#475569] sm:inline">
-                  beyond the lab
-                </span>
               </div>
 
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">

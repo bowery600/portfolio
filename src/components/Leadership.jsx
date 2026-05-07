@@ -36,8 +36,8 @@ const ROLES = [
     ],
   },
   {
-    org: "SEO Career",
-    role: "Edge Participant",
+    org: "Vandy to Wall Street",
+    role: "Wall Street Prep",
     tag: "Finance Training",
     icon: LineChart,
     accent: "50+",
