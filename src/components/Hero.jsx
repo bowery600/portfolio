@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import SplineScene from "./SplineScene";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -36,7 +35,6 @@ export default function Hero() {
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-white pt-28 dark:bg-[#0E0E10] lg:pt-32"
     >
       <GridBackdrop reduce={reduce} />
-      <SplineScene scene="/scene.splinecode" side="full" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-10">
         <motion.div
