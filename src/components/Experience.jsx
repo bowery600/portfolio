@@ -14,6 +14,7 @@ import {
   ArrowUpRight,
   MapPin,
 } from "lucide-react";
+import TickerNumber from "./TickerNumber";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -21,7 +22,7 @@ const EXPERIENCES = [
   {
     company: "Cherrystone Angel Group",
     role: "Investment Research Analyst",
-    period: "2025 — Present",
+    period: "2026 — Present",
     location: "Providence, RI",
     type: "Venture",
     icon: TrendingUp,
@@ -41,7 +42,7 @@ const EXPERIENCES = [
   {
     company: "Dong Robotics Laboratory",
     role: "Medical Robotics Researcher",
-    period: "2024 — Present",
+    period: "2026 — Present",
     location: "Vanderbilt — Nashville, TN",
     type: "Research",
     icon: Cpu,
@@ -266,7 +267,10 @@ function TimelineItem({ exp, index }) {
                 className="px-4 py-3.5 text-center sm:py-4"
               >
                 <div className="font-serif text-xl font-semibold leading-none tracking-tight tabular-nums text-[#1C1C1C] dark:text-white sm:text-2xl">
-                  {m.value}
+                  <TickerNumber
+                    value={m.value}
+                    className="text-[#1C1C1C] dark:text-white"
+                  />
                 </div>
                 <div className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#334155] dark:text-white/60">
                   {m.label}

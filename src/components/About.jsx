@@ -9,6 +9,7 @@ import {
   ChefHat,
   Sparkles,
 } from "lucide-react";
+import TickerNumber from "./TickerNumber";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -91,9 +92,9 @@ export default function About() {
                 </div>
 
                 <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
-                  <Stat value="4.0" label="GPA" accent />
+                  <Stat value="3.94/4.00" label="GPA" accent />
                   <Stat value="Dean's List" label="Honors" />
-                  <Stat value="ME + Biz" label="Track" />
+                  <Stat value="ME + Business" label="Track" />
                 </div>
               </div>
             </div>
@@ -201,7 +202,10 @@ function Stat({ value, label, accent = false }) {
           accent ? "text-[#CFAE70]" : "text-white",
         ].join(" ")}
       >
-        {value}
+        <TickerNumber
+          value={value}
+          className={accent ? "text-[#CFAE70]" : "text-white"}
+        />
       </div>
       <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55">
         {label}

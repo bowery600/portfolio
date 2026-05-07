@@ -5,6 +5,7 @@ import {
   LineChart,
   ArrowUpRight,
 } from "lucide-react";
+import TickerNumber from "./TickerNumber";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -43,7 +44,7 @@ const ROLES = [
     accent: "50+",
     accentLabel: "Training Hours",
     bullets: [
-      "Completed 50+ hours of rigorous technical training.",
+      "Completing 50+ hours of rigorous technical training.",
       "Studied financial modeling fundamentals and best practices.",
       "Built fluency in corporate valuation methods and frameworks.",
     ],
@@ -143,7 +144,7 @@ function LeadershipCard({ role, index }) {
         {/* Accent stat */}
         <div className="mt-5 flex items-baseline gap-2">
           <span className="font-serif text-4xl font-semibold leading-none tracking-tight tabular-nums text-[#8a6f3a] dark:text-[#CFAE70]">
-            {role.accent}
+            <TickerNumber value={role.accent} className="text-[#8a6f3a] dark:text-[#CFAE70]" />
           </span>
           <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#334155] dark:text-white/60">
             {role.accentLabel}

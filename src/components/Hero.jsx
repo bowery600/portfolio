@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+
+const Spline = lazy(() => import("@splinetool/react-spline"));
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -36,21 +38,28 @@ export default function Hero() {
     >
       <GridBackdrop reduce={reduce} />
 
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-10">
+      {/* Interactive Spline scene */}
+      <div className="pointer-events-auto absolute inset-0 -z-[5]">
+        <Suspense fallback={null}>
+          <Spline
+            scene="/scene-clean.splinecode"
+            style={{ width: "100%", height: "100%" }}
+          />
+        </Suspense>
+        {/* Soft wash to keep text legible while leaving the scene interactive in the margins */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.2)_45%,transparent_75%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(14,14,16,0.55)_0%,rgba(14,14,16,0.2)_45%,transparent_75%)]"
+        />
+      </div>
+
+      <div className="pointer-events-none relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-10">
         <motion.div
           variants={container}
           initial="hidden"
           animate="show"
           className="flex flex-col items-center text-center"
         >
-          {/* Eyebrow */}
-          <motion.p
-            variants={rise}
-            className="mb-10 text-[11px] font-medium uppercase tracking-[0.32em] text-[#475569] [text-shadow:0_0_10px_rgba(255,255,255,0.85),0_1px_2px_rgba(0,0,0,0.25)] sm:text-xs"
-          >
-            Mechanical Engineer &amp; Investor
-          </motion.p>
-
           {/* Name */}
           <motion.h1
             variants={rise}
@@ -70,7 +79,7 @@ export default function Hero() {
           </motion.div>
 
           {/* CTA */}
-          <motion.div variants={rise} className="mt-14">
+          <motion.div variants={rise} className="pointer-events-auto mt-14">
             <a
               href="mailto:ethan.hood@vanderbilt.edu"
               className="group inline-flex items-center justify-center rounded-md bg-[#CFAE70] px-10 py-3.5 text-sm font-semibold uppercase tracking-[0.22em] text-[#1C1C1C] shadow-[0_10px_30px_-12px_rgba(207,174,112,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#D9BC85] hover:shadow-[0_18px_40px_-14px_rgba(207,174,112,0.6)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#0E0E10]"
