@@ -1,63 +1,60 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 
 export default function TickerNumber({ value, className = "" }) {
-  const [displayValue, setDisplayValue] = useState(value);
-  const [isInView, setIsInView] = useState(false);
+  const reduce = useReducedMotion();
   const elementRef = useRef(null);
   const animationStartedRef = useRef(false);
 
-  // Extract numeric parts from the value string
   const numericMatch = value.match(/[\d.]+/);
   const hasNumeric = numericMatch !== null;
-  const numericPart = numericMatch ? parseFloat(numericMatch[0]) : 0;
-  const prefix = value.substring(0, numericMatch?.index || 0);
-  const suffix = value.substring((numericMatch?.index || 0) + (numericMatch?.[0].length || 0));
+  const numericPart = hasNumeric ? parseFloat(numericMatch[0]) : 0;
+  const prefix = hasNumeric ? value.substring(0, numericMatch.index) : "";
+  const suffix = hasNumeric
+    ? value.substring(numericMatch.index + numericMatch[0].length)
+    : "";
+  const decimalPlaces = hasNumeric
+    ? numericMatch[0].split(".")[1]?.length || 0
+    : 0;
+
+  const format = (n) =>
+    prefix + (decimalPlaces > 0 ? n.toFixed(decimalPlaces) : Math.round(n)) + suffix;
+
+  const [displayValue, setDisplayValue] = useState(
+    hasNumeric && !reduce ? format(0) : value
+  );
+  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     if (!hasNumeric || !isInView || animationStartedRef.current) return;
-
     animationStartedRef.current = true;
-    const duration = 2; // seconds
+
+    if (reduce) {
+      setDisplayValue(value);
+      return;
+    }
+
+    const duration = 2;
     const startTime = Date.now();
     let animationId;
 
     const animate = () => {
       const elapsed = (Date.now() - startTime) / 1000;
       const progress = Math.min(elapsed / duration, 1);
-
-      // Easing function for smooth animation
       const easeOutQuad = 1 - Math.pow(1 - progress, 2);
-      const currentValue = numericPart * easeOutQuad;
-
-      // Format the number based on the original format
-      let formatted;
-      if (value.includes("%")) {
-        formatted = Math.round(currentValue) + "%";
-      } else if (value.includes("$")) {
-        formatted = "$" + Math.round(currentValue) + "K";
-      } else if (value.includes("/")) {
-        // For GPA format like 3.94/4.00
-        const decimalPlaces = numericMatch[0].split(".")[1]?.length || 0;
-        formatted = currentValue.toFixed(decimalPlaces) + suffix;
-      } else if (value.includes("+") || value.includes("−")) {
-        formatted = (prefix ? prefix : "+") + Math.round(currentValue) + "%";
-      } else {
-        formatted = Math.round(currentValue) + suffix;
-      }
-
-      setDisplayValue(prefix + formatted);
+      setDisplayValue(format(numericPart * easeOutQuad));
 
       if (progress < 1) {
         animationId = requestAnimationFrame(animate);
+      } else {
+        setDisplayValue(value);
       }
     };
 
     animationId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationId);
-  }, [hasNumeric, numericPart, isInView, prefix, suffix, value]);
+  }, [hasNumeric, numericPart, isInView, prefix, suffix, value, reduce, decimalPlaces]);
 
-  // Setup intersection observer to trigger animation when in view
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -78,7 +75,7 @@ export default function TickerNumber({ value, className = "" }) {
   return (
     <motion.span
       ref={elementRef}
-      className={className}
+      className={`tabular-nums ${className}`}
       initial={{ opacity: 0, y: 4 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}

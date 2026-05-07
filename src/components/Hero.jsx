@@ -34,28 +34,26 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-white pt-28 dark:bg-[#0E0E10] lg:pt-32"
+      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-white pt-28 lg:pt-32"
     >
       <GridBackdrop reduce={reduce} />
 
-      {/* Interactive Spline scene */}
-      <div className="pointer-events-auto absolute inset-0 -z-[5] overflow-hidden">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-[5] overflow-hidden"
+      >
         <Suspense fallback={null}>
           <Spline
             scene="/scene-clean.splinecode"
             style={{
               width: "100%",
               height: "100%",
-              transform: "scale(1.6)",
+              transform: "translateY(8%) scale(1.6)",
               transformOrigin: "center center",
             }}
           />
         </Suspense>
-        {/* Soft wash to keep text legible while leaving the scene interactive in the margins */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.2)_45%,transparent_75%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(14,14,16,0.55)_0%,rgba(14,14,16,0.2)_45%,transparent_75%)]"
-        />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.55)_0%,rgba(255,255,255,0.2)_45%,transparent_75%)]" />
       </div>
 
       <div className="pointer-events-none relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-10">
@@ -65,14 +63,27 @@ export default function Hero() {
           animate="show"
           className="flex flex-col items-center text-center"
         >
-          {/* CTA */}
+          <motion.h1
+            variants={rise}
+            className="font-serif text-5xl font-medium tracking-tight text-[#1C1C1C] [text-shadow:0_0_18px_rgba(255,255,255,0.85),0_1px_3px_rgba(0,0,0,0.2)] sm:text-6xl md:text-7xl lg:text-8xl"
+          >
+            Ethan Hood
+          </motion.h1>
+
+          <motion.p
+            variants={rise}
+            className="mt-5 text-base font-medium uppercase tracking-[0.28em] text-[#475569] [text-shadow:0_0_12px_rgba(255,255,255,0.85)] sm:text-lg"
+          >
+            Mechanical Engineering &amp; Business
+          </motion.p>
+
           <motion.div
             variants={rise}
             className="pointer-events-auto mt-14 flex flex-col items-center gap-4 sm:flex-row sm:gap-5"
           >
             <a
               href="mailto:ethan.hood@vanderbilt.edu"
-              className="group inline-flex items-center justify-center rounded-md bg-[#CFAE70] px-10 py-3.5 text-sm font-semibold uppercase tracking-[0.22em] text-[#1C1C1C] shadow-[0_10px_30px_-12px_rgba(207,174,112,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#D9BC85] hover:shadow-[0_18px_40px_-14px_rgba(207,174,112,0.6)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#0E0E10]"
+              className="group inline-flex items-center justify-center rounded-md bg-[#CFAE70] px-10 py-3.5 text-sm font-semibold uppercase tracking-[0.22em] text-[#1C1C1C] shadow-[0_10px_30px_-12px_rgba(207,174,112,0.55)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#D9BC85] hover:shadow-[0_18px_40px_-14px_rgba(207,174,112,0.6)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
             >
               Get in Touch
             </a>
@@ -98,7 +109,8 @@ function RotatingPhrase({ index, reduce }) {
 
       <span
         className="col-start-1 row-start-1 flex items-center justify-center overflow-hidden"
-        aria-hidden="true"
+        aria-live="polite"
+        aria-atomic="true"
       >
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
@@ -122,7 +134,7 @@ function GridBackdrop({ reduce }) {
     <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
       {/* Light grid */}
       <div
-        className="absolute inset-0 opacity-[0.55] dark:hidden"
+        className="absolute inset-0 opacity-[0.55]"
         style={{
           backgroundImage:
             "linear-gradient(to right, rgba(28,28,28,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(28,28,28,0.05) 1px, transparent 1px)",
@@ -133,36 +145,23 @@ function GridBackdrop({ reduce }) {
             "radial-gradient(ellipse at center, rgba(0,0,0,0.95) 35%, transparent 80%)",
         }}
       />
-      {/* Dark grid */}
-      <div
-        className="absolute inset-0 hidden opacity-[0.55] dark:block"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px)",
-          backgroundSize: "72px 72px",
-          maskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,0.95) 35%, transparent 80%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,0.95) 35%, transparent 80%)",
-        }}
-      />
 
       {/* Top vignette */}
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white/60 to-transparent dark:from-black/40" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white/60 to-transparent" />
       {/* Bottom vignette */}
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white/80 to-transparent dark:from-black/60" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white/80 to-transparent" />
 
       {/* Drifting gold glow */}
       <motion.div
         aria-hidden
         animate={reduce ? {} : { x: [0, 40, -20, 0], y: [0, -25, 15, 0] }}
         transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-1/2 top-1/2 h-[640px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(207,174,112,0.18),transparent_60%)] blur-2xl dark:bg-[radial-gradient(circle_at_center,rgba(207,174,112,0.10),transparent_60%)]"
+        className="absolute left-1/2 top-1/2 h-[640px] w-[640px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(207,174,112,0.18),transparent_60%)] blur-2xl"
       />
 
       {/* Faint corner accent dots */}
-      <div className="absolute left-6 top-6 h-1.5 w-1.5 rounded-full bg-black/20 dark:bg-white/30" />
-      <div className="absolute right-6 bottom-6 h-1 w-1 rounded-full bg-[#CFAE70]/60 dark:bg-[#CFAE70]/50" />
+      <div className="absolute left-6 top-6 h-1.5 w-1.5 rounded-full bg-black/20" />
+      <div className="absolute right-6 bottom-6 h-1 w-1 rounded-full bg-[#CFAE70]/60" />
     </div>
   );
 }
