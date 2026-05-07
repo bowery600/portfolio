@@ -36,7 +36,13 @@ export default function Hero() {
       className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-white pt-28 dark:bg-[#0E0E10] lg:pt-32"
     >
       <GridBackdrop reduce={reduce} />
-      <SplineScene scene="/scene-clean.splinecode" side="full" />
+      <SplineScene scene="/scene-clean.splinecode" side="full" zClass="-z-[1]" />
+      <SplineScene
+        scene="/scene.splinecode"
+        side="left"
+        shiftClass="lg:-translate-x-16 xl:-translate-x-24"
+      />
+      <SplineScene scene="/scene-right.splinecode" side="right" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-10">
         <motion.div
@@ -48,7 +54,7 @@ export default function Hero() {
           {/* Eyebrow */}
           <motion.p
             variants={rise}
-            className="mb-10 text-[11px] font-medium uppercase tracking-[0.32em] text-[#475569] dark:text-white/45 sm:text-xs"
+            className="mb-10 text-[11px] font-medium uppercase tracking-[0.32em] text-[#475569] [text-shadow:0_0_10px_rgba(255,255,255,0.85),0_1px_2px_rgba(0,0,0,0.25)] sm:text-xs"
           >
             Mechanical Engineer &amp; Investor
           </motion.p>
@@ -56,7 +62,7 @@ export default function Hero() {
           {/* Name */}
           <motion.h1
             variants={rise}
-            className="font-serif text-[18vw] font-semibold uppercase leading-[0.92] tracking-[-0.02em] text-[#1C1C1C] dark:text-white sm:text-[16vw] md:text-[14vw] lg:text-[clamp(7rem,13vw,13rem)]"
+            className="font-serif text-[18vw] font-semibold uppercase leading-[0.92] tracking-[-0.02em] text-[#1C1C1C] [text-shadow:0_0_28px_rgba(255,255,255,0.85),0_0_60px_rgba(255,255,255,0.55),0_2px_6px_rgba(0,0,0,0.3)] sm:text-[16vw] md:text-[14vw] lg:text-[clamp(7rem,13vw,13rem)]"
           >
             Ethan Hood
           </motion.h1>
@@ -64,10 +70,10 @@ export default function Hero() {
           {/* Sub-line with rotating gold phrase */}
           <motion.div
             variants={rise}
-            className="mt-10 flex max-w-full flex-col items-center gap-y-2 text-lg text-[#475569] dark:text-white/65 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-4 sm:text-xl md:text-2xl"
+            className="mt-10 flex max-w-full flex-col items-center gap-y-2 text-lg text-[#475569] [text-shadow:0_0_12px_rgba(255,255,255,0.85),0_1px_3px_rgba(0,0,0,0.25)] sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-4 sm:text-xl md:text-2xl"
           >
             <span className="font-light">Mechanical Engineering &amp; Business</span>
-            <span aria-hidden className="hidden text-black/20 dark:text-white/20 sm:inline">|</span>
+            <span aria-hidden className="hidden text-black/20 sm:inline">|</span>
             <RotatingPhrase index={i} reduce={reduce} />
           </motion.div>
 
@@ -107,7 +113,7 @@ function RotatingPhrase({ index, reduce }) {
             animate={reduce ? { opacity: 1 } : { y: 0, opacity: 1 }}
             exit={reduce ? { opacity: 0 } : { y: "-60%", opacity: 0 }}
             transition={{ duration: 0.55, ease }}
-            className="whitespace-nowrap font-medium text-[#8a6f3a] dark:text-[#CFAE70]"
+            className="whitespace-nowrap font-medium text-[#8a6f3a]"
           >
             {ROTATING[index]}
           </motion.span>

@@ -7,6 +7,7 @@ export default function SplineScene({
   scene = "/scene.splinecode",
   side = "left",
   shiftClass = "",
+  zClass = "z-0",
 }) {
   const wrapRef = useRef(null);
   const canvasRef = useRef(null);
@@ -56,7 +57,7 @@ export default function SplineScene({
       <div
         ref={wrapRef}
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 z-0 ${shiftClass}`}
+        className={`pointer-events-none absolute inset-0 ${zClass} ${shiftClass}`}
       >
         <div
           ref={canvasRef}
