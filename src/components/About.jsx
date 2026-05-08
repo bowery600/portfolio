@@ -37,8 +37,8 @@ export default function About() {
       id="about"
       className="relative isolate scroll-mt-24 bg-[#FAFAFA] py-24 dark:bg-[#121215] sm:py-32"
     >
-      {/* faint top fade into hero */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent dark:from-[#0E0E10]" />
+      {/* faint top fade into hero (Hero is dark in both themes) */}
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#0E0E10]/40 to-transparent dark:from-[#0E0E10]" />
 
       <BlueprintBg />
 
@@ -247,7 +247,7 @@ function Stat({ value, label, accent = false }) {
           className={accent ? "text-[#CFAE70]" : "text-white"}
         />
       </div>
-      <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/55">
+      <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/75">
         {label}
       </div>
     </div>
@@ -261,17 +261,17 @@ function CityBlock({ code, city, region, coords, tag }) {
         <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-[#CFAE70]">
           {code}
         </span>
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#334155]/55 dark:text-white/40">
+        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#334155]/75 dark:text-white/65">
           {tag}
         </span>
       </div>
       <div className="mt-1 font-serif text-xl font-semibold leading-tight tracking-tight text-[#1C1C1C] dark:text-white">
         {city}
       </div>
-      <div className="mt-0.5 text-xs text-[#475569] dark:text-white/55">
+      <div className="mt-0.5 text-xs text-[#475569] dark:text-white/70">
         {region}
       </div>
-      <div className="mt-1.5 font-mono text-[10px] tabular-nums tracking-wide text-[#334155]/70 dark:text-white/45">
+      <div className="mt-1.5 font-mono text-[10px] tabular-nums tracking-wide text-[#334155]/80 dark:text-white/65">
         {coords}
       </div>
     </div>

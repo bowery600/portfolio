@@ -6,14 +6,7 @@ import {
   useInView,
   useReducedMotion,
 } from "framer-motion";
-import {
-  TrendingUp,
-  Cpu,
-  Layers,
-  Sprout,
-  ArrowUpRight,
-  MapPin,
-} from "lucide-react";
+import { TrendingUp, Cpu, Layers, Sprout, MapPin } from "lucide-react";
 import TickerNumber from "./TickerNumber";
 import MarketBg from "./backgrounds/MarketBg";
 
@@ -63,7 +56,7 @@ const EXPERIENCES = [
   {
     company: "IQ3Connect",
     role: "XR & UI Design Intern",
-    period: "Summer 2025",
+    period: "2024 — 2025",
     location: "Boston, MA",
     type: "XR / UX",
     icon: Layers,
@@ -83,7 +76,7 @@ const EXPERIENCES = [
   {
     company: "Student Services Landscaping",
     role: "Founder & Co-Owner",
-    period: "2021 — 2024",
+    period: "2022 — 2024",
     location: "New England",
     type: "Founder",
     icon: Sprout,
@@ -173,7 +166,7 @@ export default function Experience() {
 
 function TimelineItem({ exp, index }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: false, margin: "-45% 0px -45% 0px" });
+  const inView = useInView(ref, { once: true, margin: "-35% 0px -35% 0px" });
   const Icon = exp.icon;
 
   return (
@@ -221,24 +214,13 @@ function TimelineItem({ exp, index }) {
           </div>
 
           {/* Headline */}
-          <div className="mt-4 flex items-start justify-between gap-4">
-            <div>
-              <h3 className="font-serif text-2xl font-semibold leading-tight text-[#1C1C1C] dark:text-white sm:text-[28px]">
-                {exp.company}
-              </h3>
-              <div className="mt-1.5 text-sm font-medium text-[#475569] dark:text-white/65 sm:text-base">
-                {exp.role}
-              </div>
+          <div className="mt-4">
+            <h3 className="font-serif text-2xl font-semibold leading-tight text-[#1C1C1C] dark:text-white sm:text-[28px]">
+              {exp.company}
+            </h3>
+            <div className="mt-1.5 text-sm font-medium text-[#475569] dark:text-white/65 sm:text-base">
+              {exp.role}
             </div>
-            <ArrowUpRight
-              className={[
-                "mt-1 hidden h-5 w-5 flex-none transition-all duration-500 sm:block",
-                inView
-                  ? "translate-x-0 -translate-y-0 text-[#CFAE70] opacity-100"
-                  : "-translate-x-1 translate-y-1 text-[#475569] opacity-50 dark:text-white/55",
-              ].join(" ")}
-              strokeWidth={2}
-            />
           </div>
 
           {/* Summary */}
@@ -299,11 +281,14 @@ function Node({ active, Icon }) {
         transition={{ duration: 0.5, ease }}
         className="absolute -inset-2 rounded-full bg-[#CFAE70]/25 blur-md"
       />
-      {/* ping */}
+      {/* one-shot activation pulse */}
       {active && (
-        <span
+        <motion.span
           aria-hidden
-          className="absolute inset-0 -m-1 animate-ping rounded-full bg-[#CFAE70]/30"
+          initial={{ scale: 0.8, opacity: 0.6 }}
+          animate={{ scale: 2.2, opacity: 0 }}
+          transition={{ duration: 0.9, ease }}
+          className="absolute inset-0 -m-1 rounded-full bg-[#CFAE70]/35"
         />
       )}
       {/* node */}

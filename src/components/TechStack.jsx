@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import {
   Box,
@@ -184,6 +184,24 @@ const HEX_CLIP =
 function HexTile({ item, index, groupIndex }) {
   const reduce = useReducedMotion();
   const Icon = item.icon;
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node || typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { rootMargin: "100px" }
+    );
+    io.observe(node);
+    return () => io.disconnect();
+  }, []);
+
+  const float = !reduce && visible;
 
   // Subtle deterministic float offset per tile
   const seed = (groupIndex * 7 + index * 13) % 360;
@@ -192,6 +210,7 @@ function HexTile({ item, index, groupIndex }) {
 
   return (
     <motion.div
+      ref={ref}
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
@@ -201,13 +220,12 @@ function HexTile({ item, index, groupIndex }) {
     >
       {/* Gentle floating wrapper */}
       <motion.div
-        animate={reduce ? {} : { y: [0, -3.5, 0, 3.5, 0] }}
-        transition={{
-          duration,
-          delay,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={float ? { y: [0, -3.5, 0, 3.5, 0] } : { y: 0 }}
+        transition={
+          float
+            ? { duration, delay, repeat: Infinity, ease: "easeInOut" }
+            : { duration: 0 }
+        }
         className="absolute inset-0"
       >
         {/* Outer (border) hex — bg becomes gold on hover, acting as the ring */}

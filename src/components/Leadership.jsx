@@ -1,10 +1,5 @@
 import { motion } from "framer-motion";
-import {
-  Megaphone,
-  Trophy,
-  LineChart,
-  ArrowUpRight,
-} from "lucide-react";
+import { Megaphone, Trophy, LineChart } from "lucide-react";
 import TickerNumber from "./TickerNumber";
 import NetworkBg from "./backgrounds/NetworkBg";
 
@@ -121,14 +116,10 @@ function LeadershipCard({ role, index }) {
 
       <div className="relative flex h-full flex-col p-6 sm:p-7">
         {/* Top row */}
-        <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start gap-3">
           <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-black/[0.06] bg-[#FAFAFA] text-[#CFAE70] transition-all duration-500 group-hover:border-[#CFAE70]/30 group-hover:bg-white group-hover:shadow-[0_6px_18px_-8px_rgba(207,174,112,0.55)] dark:border-white/[0.08] dark:bg-white/[0.04] dark:group-hover:border-[#CFAE70]/40 dark:group-hover:bg-white/[0.08]">
             <Icon className="h-5 w-5" strokeWidth={2} />
           </span>
-          <ArrowUpRight
-            className="h-4 w-4 -translate-x-1 translate-y-1 text-[#475569] opacity-50 transition-all duration-500 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:text-[#CFAE70] group-hover:opacity-100 dark:text-white/55"
-            strokeWidth={2.25}
-          />
         </div>
 
         {/* Tag */}

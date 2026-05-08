@@ -34,7 +34,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-white pt-28 lg:pt-32"
+      className="relative isolate flex min-h-[100svh] items-center overflow-hidden bg-[#0E0E10] pt-28 lg:pt-32"
     >
       <div
         aria-hidden
@@ -53,6 +53,12 @@ export default function Hero() {
         </Suspense>
       </div>
 
+      {/* Readability scrim — guarantees text contrast over the 3D scene */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-[2] bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.55)_0%,rgba(0,0,0,0.25)_45%,transparent_75%)]"
+      />
+
       <div className="pointer-events-none relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-10">
         <motion.div
           variants={container}
@@ -69,7 +75,7 @@ export default function Hero() {
 
           <motion.p
             variants={rise}
-            className="mt-5 text-base font-medium uppercase tracking-[0.28em] text-[#475569] sm:text-lg"
+            className="mt-5 text-base font-medium uppercase tracking-[0.28em] text-white/75 sm:text-lg"
           >
             Mechanical Engineering &amp; Business
           </motion.p>
@@ -80,11 +86,11 @@ export default function Hero() {
           >
             <a
               href="mailto:ethan.hood@vanderbilt.edu"
-              className="group inline-flex items-center justify-center rounded-md bg-[#CFAE70] px-10 py-3.5 text-sm font-semibold uppercase tracking-[0.22em] text-[#1C1C1C] transition-colors duration-200 hover:bg-[#D9BC85] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+              className="group inline-flex items-center justify-center rounded-md bg-[#CFAE70] px-10 py-3.5 text-sm font-semibold uppercase tracking-[0.22em] text-[#1C1C1C] transition-colors duration-200 hover:bg-[#D9BC85] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0E0E10]"
             >
               Get in Touch
             </a>
-            <div className="flex items-center gap-3 text-base text-[#475569] sm:text-lg md:text-xl">
+            <div className="flex items-center gap-3 text-base text-white/85 sm:text-lg md:text-xl">
               <RotatingPhrase index={i} reduce={reduce} />
             </div>
           </motion.div>
@@ -142,7 +148,7 @@ function RotatingPhrase({ index, reduce }) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="whitespace-nowrap font-medium text-[#8a6f3a]"
+              className="whitespace-nowrap font-medium text-[#E6C892]"
             >
               {word}
             </motion.span>
@@ -153,7 +159,7 @@ function RotatingPhrase({ index, reduce }) {
               initial="hidden"
               animate="show"
               exit="hidden"
-              className="inline-flex whitespace-nowrap font-medium text-[#8a6f3a]"
+              className="inline-flex whitespace-nowrap font-medium text-[#E6C892]"
               aria-label={word}
             >
               {word.split("").map((ch, idx) => (

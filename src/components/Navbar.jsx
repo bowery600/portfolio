@@ -35,9 +35,12 @@ export default function Navbar() {
     };
     window.addEventListener("keydown", onKey);
     const t = window.setTimeout(() => firstLinkRef.current?.focus(), 60);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     return () => {
       window.removeEventListener("keydown", onKey);
       window.clearTimeout(t);
+      document.body.style.overflow = prevOverflow;
     };
   }, [open]);
 
@@ -53,6 +56,31 @@ export default function Navbar() {
           : "bg-white/40 dark:bg-[#0E0E10]/40 backdrop-blur-md border-b border-transparent",
       ].join(" ")}
     >
+      {/* Animated gold gradient sweep along the bottom edge (GPU-accelerated translate) */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-px overflow-hidden"
+        style={{
+          opacity: scrolled ? 1 : 0.55,
+          transition: "opacity 300ms ease",
+        }}
+      >
+        <motion.span
+          className="absolute inset-y-0 left-0 w-[60%]"
+          style={{
+            backgroundImage:
+              "linear-gradient(90deg, rgba(207,174,112,0) 0%, rgba(207,174,112,0.9) 50%, rgba(207,174,112,0) 100%)",
+            willChange: "transform",
+          }}
+          animate={reduce ? { x: "70%" } : { x: ["-60%", "170%"] }}
+          transition={
+            reduce
+              ? { duration: 0 }
+              : { duration: 7, repeat: Infinity, ease: "linear" }
+          }
+        />
+      </div>
+
       <nav
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6 lg:h-[72px] lg:px-8"
         aria-label="Primary"

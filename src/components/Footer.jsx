@@ -1,4 +1,5 @@
 import { Linkedin, Mail, ArrowUp } from "lucide-react";
+import WaveBg from "./backgrounds/WaveBg";
 
 const SOCIALS = [
   {
@@ -21,16 +22,7 @@ export default function Footer() {
       id="contact"
       className="relative isolate overflow-hidden bg-[#1C1C1C] text-white"
     >
-      {/* faint gold ambient */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-32 h-72 bg-[radial-gradient(ellipse_at_center,rgba(207,174,112,0.18),transparent_60%)]"
-      />
-      {/* hairline */}
-      <div
-        aria-hidden
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#CFAE70]/40 to-transparent"
-      />
+      <WaveBg />
 
       <div
         className="mx-auto w-full max-w-6xl px-6 py-16 lg:px-8 lg:py-20"
@@ -39,7 +31,7 @@ export default function Footer() {
         {/* Top: CTA */}
         <div className="flex flex-col items-start gap-10 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/55">
+            <div className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">
               <span className="h-px w-8 bg-[#CFAE70]" />
               Let&apos;s build
             </div>
@@ -56,7 +48,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="mailto:ethan.hood@vanderbilt.edu"
-              className="group inline-flex items-center gap-2 rounded-full bg-[#CFAE70] px-5 py-3 text-sm font-semibold text-[#1C1C1C] shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_8px_24px_-10px_rgba(207,174,112,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#C5A364] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1C1C1C]"
+              className="inline-flex items-center gap-2 rounded-full bg-[#CFAE70] px-5 py-3 text-sm font-semibold text-[#1C1C1C] shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_8px_24px_-10px_rgba(207,174,112,0.6)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#C5A364] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1C1C1C]"
               aria-label="Email Ethan"
             >
               <Mail className="h-4 w-4" strokeWidth={2.25} />
@@ -66,7 +58,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/ethanhood6"
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-[#CFAE70]/60 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1C1C1C]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-3 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-0.5 hover:border-[#CFAE70]/60 hover:bg-white/[0.06] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1C1C1C]"
               aria-label="LinkedIn"
             >
               <Linkedin className="h-4 w-4 text-[#CFAE70]" strokeWidth={2} />
@@ -86,8 +78,8 @@ export default function Footer() {
               <span className="font-serif text-[13px] leading-none">EH</span>
               <span className="absolute -bottom-0.5 -right-0.5 h-1.5 w-1.5 rounded-full bg-[#CFAE70]" />
             </span>
-            <div className="text-xs leading-tight text-white/55">
-              <div className="font-medium text-white/80">Ethan Hood</div>
+            <div className="text-xs leading-tight text-white/75">
+              <div className="font-medium text-white/90">Ethan Hood</div>
               <div>© 2026 — All rights reserved.</div>
             </div>
           </div>
@@ -105,7 +97,7 @@ export default function Footer() {
                         ? { target: "_blank", rel: "noreferrer" }
                         : {})}
                       aria-label={s.label}
-                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white/70 transition-all duration-200 hover:border-[#CFAE70]/60 hover:text-[#CFAE70] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1C1C1C]"
+                      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-white/75 transition-all duration-200 hover:border-[#CFAE70]/60 hover:text-[#CFAE70] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1C1C1C]"
                     >
                       <Icon className="h-4 w-4" strokeWidth={2} />
                     </a>
@@ -117,7 +109,7 @@ export default function Footer() {
             <a
               href="#top"
               aria-label="Back to top"
-              className="group inline-flex items-center gap-1.5 rounded-full border border-white/10 px-3.5 py-2 text-xs font-medium text-white/70 transition-all duration-200 hover:border-[#CFAE70]/60 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1C1C1C]"
+              className="group inline-flex min-h-[44px] items-center gap-1.5 rounded-full border border-white/10 px-4 py-2.5 text-xs font-medium text-white/75 transition-all duration-200 hover:border-[#CFAE70]/60 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1C1C1C]"
             >
               <ArrowUp
                 className="h-3.5 w-3.5 transition-transform duration-200 group-hover:-translate-y-0.5"
