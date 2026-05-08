@@ -5,6 +5,7 @@ import TechStack from "./components/TechStack";
 import Experience from "./components/Experience";
 import Leadership from "./components/Leadership";
 import Footer from "./components/Footer";
+import SectionTransition from "./components/SectionTransition";
 
 export default function App() {
   return (
@@ -19,9 +20,41 @@ export default function App() {
       <main id="main">
         <Hero />
         <About />
+        <SectionTransition
+          from="blueprint"
+          to="circuit"
+          bgFrom="#FAFAFA"
+          bgTo="#FFFFFF"
+          bgFromDark="#121215"
+          bgToDark="#0E0E10"
+        />
         <TechStack />
+        <SectionTransition
+          from="circuit"
+          to="market"
+          bgFrom="#FFFFFF"
+          bgTo="#FFFFFF"
+          bgFromDark="#0E0E10"
+          bgToDark="#0E0E10"
+        />
         <Experience />
+        <SectionTransition
+          from="market"
+          to="network"
+          bgFrom="#FFFFFF"
+          bgTo="#FAFAFA"
+          bgFromDark="#0E0E10"
+          bgToDark="#121215"
+        />
         <Leadership />
+        <SectionTransition
+          from="network"
+          to="contact"
+          bgFrom="#FAFAFA"
+          bgTo="#1C1C1C"
+          bgFromDark="#121215"
+          bgToDark="#1C1C1C"
+        />
       </main>
       <Footer />
     </div>

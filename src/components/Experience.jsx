@@ -15,6 +15,7 @@ import {
   MapPin,
 } from "lucide-react";
 import TickerNumber from "./TickerNumber";
+import MarketBg from "./backgrounds/MarketBg";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -115,8 +116,10 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative isolate scroll-mt-24 bg-white py-24 dark:bg-[#0E0E10] sm:py-32"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-white py-24 dark:bg-[#0E0E10] sm:py-32"
     >
+      <MarketBg />
+
       <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         {/* Section header */}
         <motion.div

@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import TickerNumber from "./TickerNumber";
+import BlueprintBg from "./backgrounds/BlueprintBg";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -38,6 +39,8 @@ export default function About() {
     >
       {/* faint top fade into hero */}
       <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white to-transparent dark:from-[#0E0E10]" />
+
+      <BlueprintBg />
 
       <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         {/* Section header */}
@@ -102,7 +105,7 @@ export default function About() {
 
           {/* Locations */}
           <BentoCard index={1} className="lg:col-span-2 lg:row-span-2">
-            <div className="flex h-full flex-col justify-between p-6">
+            <div className="flex h-full flex-col p-6">
               <div className="flex items-center gap-3">
                 <IconBubble>
                   <MapPin className="h-5 w-5 text-[#CFAE70]" strokeWidth={2} />
@@ -112,10 +115,47 @@ export default function About() {
                 </span>
               </div>
 
-              <div className="mt-6 space-y-3">
-                <CityRow city="Boston" region="Massachusetts" code="BOS" />
-                <div className="ml-[15px] h-4 w-px bg-gradient-to-b from-[#CFAE70] to-transparent" />
-                <CityRow city="Nashville" region="Tennessee" code="BNA" />
+              <div className="mt-7 flex flex-1 items-stretch gap-5">
+                {/* Route rail */}
+                <div
+                  className="relative flex w-3 flex-none flex-col items-center pt-1.5 pb-1"
+                  aria-hidden
+                >
+                  <span className="h-2.5 w-2.5 rounded-full bg-[#CFAE70] ring-4 ring-[#CFAE70]/15" />
+                  <span
+                    className="my-1 w-px flex-1"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(to bottom, #CFAE70 50%, transparent 50%)",
+                      backgroundSize: "1px 6px",
+                      backgroundRepeat: "repeat-y",
+                    }}
+                  />
+                  <span className="h-2.5 w-2.5 rounded-full border border-[#CFAE70] bg-transparent" />
+                </div>
+
+                {/* Cities */}
+                <div className="flex flex-1 flex-col justify-between">
+                  <CityBlock
+                    code="BOS"
+                    city="Boston"
+                    region="Massachusetts"
+                    coords="42.36°N · 71.06°W"
+                    tag="Home"
+                  />
+                  <div className="my-3 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-[#334155]/70 dark:text-white/45">
+                    <span className="h-px flex-1 bg-black/10 dark:bg-white/10" />
+                    <span className="font-mono tabular-nums">1,100 mi</span>
+                    <span className="h-px flex-1 bg-black/10 dark:bg-white/10" />
+                  </div>
+                  <CityBlock
+                    code="BNA"
+                    city="Nashville"
+                    region="Tennessee"
+                    coords="36.16°N · 86.78°W"
+                    tag="School"
+                  />
+                </div>
               </div>
             </div>
           </BentoCard>
@@ -214,21 +254,26 @@ function Stat({ value, label, accent = false }) {
   );
 }
 
-function CityRow({ city, region, code }) {
+function CityBlock({ code, city, region, coords, tag }) {
   return (
-    <div className="flex items-center gap-3">
-      <span className="relative inline-flex h-2 w-2 flex-none rounded-full bg-[#CFAE70]" />
-      <div className="flex-1">
-        <div className="text-base font-semibold text-[#1C1C1C] dark:text-white">
-          {city}
-          <span className="ml-2 text-xs font-normal text-[#334155] dark:text-white/60">
-            {region}
-          </span>
-        </div>
+    <div>
+      <div className="flex items-baseline gap-2">
+        <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-[#CFAE70]">
+          {code}
+        </span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#334155]/55 dark:text-white/40">
+          {tag}
+        </span>
       </div>
-      <span className="rounded-md border border-black/[0.06] bg-[#FAFAFA] px-1.5 py-0.5 font-mono text-[11px] font-semibold tracking-wider text-[#334155] dark:border-white/[0.08] dark:bg-white/[0.04] dark:text-white/70">
-        {code}
-      </span>
+      <div className="mt-1 font-serif text-xl font-semibold leading-tight tracking-tight text-[#1C1C1C] dark:text-white">
+        {city}
+      </div>
+      <div className="mt-0.5 text-xs text-[#475569] dark:text-white/55">
+        {region}
+      </div>
+      <div className="mt-1.5 font-mono text-[10px] tabular-nums tracking-wide text-[#334155]/70 dark:text-white/45">
+        {coords}
+      </div>
     </div>
   );
 }

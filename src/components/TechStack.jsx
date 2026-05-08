@@ -17,6 +17,7 @@ import {
   Cog,
   Bot,
 } from "lucide-react";
+import CircuitBg from "./backgrounds/CircuitBg";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -72,39 +73,7 @@ export default function TechStack() {
       id="stack"
       className="relative isolate scroll-mt-24 overflow-hidden bg-white py-24 dark:bg-[#0E0E10] sm:py-32"
     >
-      {/* Engineering grid backdrop */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 opacity-[0.5] dark:hidden"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(28,28,28,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(28,28,28,0.045) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-          maskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,0.9) 25%, transparent 75%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,0.9) 25%, transparent 75%)",
-        }}
-      />
-      {/* Dark grid */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 hidden opacity-[0.55] dark:block"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-          maskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,0.9) 25%, transparent 75%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse at center, rgba(0,0,0,0.9) 25%, transparent 75%)",
-        }}
-      />
-      {/* Faint gold ambient */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -left-32 top-1/3 -z-10 h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle_at_center,rgba(207,174,112,0.10),transparent_60%)] blur-2xl"
-      />
+      <CircuitBg />
 
       <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         {/* Header */}

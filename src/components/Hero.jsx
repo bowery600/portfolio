@@ -62,7 +62,7 @@ export default function Hero() {
         >
           <motion.h1
             variants={rise}
-            className="font-serif text-5xl font-medium tracking-tight text-[#1C1C1C] sm:text-6xl md:text-7xl lg:text-8xl"
+            className="font-serif text-5xl font-medium tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
           >
             Ethan Hood
           </motion.h1>
@@ -94,32 +94,80 @@ export default function Hero() {
   );
 }
 
+const wordVariants = {
+  hidden: { transition: { staggerChildren: 0.022, staggerDirection: -1 } },
+  show: {
+    transition: { staggerChildren: 0.032, delayChildren: 0.04 },
+  },
+};
+
+const charVariants = {
+  hidden: {
+    y: "0.7em",
+    opacity: 0,
+    filter: "blur(8px)",
+    transition: { duration: 0.32, ease },
+  },
+  show: {
+    y: 0,
+    opacity: 1,
+    filter: "blur(0px)",
+    transition: { duration: 0.5, ease },
+  },
+};
+
 function RotatingPhrase({ index, reduce }) {
+  const word = ROTATING[index];
+  const longest = ROTATING.reduce((a, b) => (b.length > a.length ? b : a), "");
+
   return (
     <span className="relative inline-grid items-center">
       <span
         aria-hidden
         className="invisible col-start-1 row-start-1 whitespace-nowrap font-medium"
       >
-        {ROTATING.reduce((a, b) => (b.length > a.length ? b : a), "")}
+        {longest}
       </span>
 
       <span
-        className="col-start-1 row-start-1 flex items-center justify-center overflow-hidden"
+        className="col-start-1 row-start-1 flex items-center justify-center overflow-hidden py-[0.15em]"
         aria-live="polite"
         aria-atomic="true"
       >
         <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            key={ROTATING[index]}
-            initial={reduce ? { opacity: 0 } : { y: "60%", opacity: 0 }}
-            animate={reduce ? { opacity: 1 } : { y: 0, opacity: 1 }}
-            exit={reduce ? { opacity: 0 } : { y: "-60%", opacity: 0 }}
-            transition={{ duration: 0.55, ease }}
-            className="whitespace-nowrap font-medium text-[#8a6f3a]"
-          >
-            {ROTATING[index]}
-          </motion.span>
+          {reduce ? (
+            <motion.span
+              key={word}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="whitespace-nowrap font-medium text-[#8a6f3a]"
+            >
+              {word}
+            </motion.span>
+          ) : (
+            <motion.span
+              key={word}
+              variants={wordVariants}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              className="inline-flex whitespace-nowrap font-medium text-[#8a6f3a]"
+              aria-label={word}
+            >
+              {word.split("").map((ch, idx) => (
+                <motion.span
+                  key={`${ch}-${idx}`}
+                  variants={charVariants}
+                  className="inline-block will-change-transform"
+                  aria-hidden
+                >
+                  {ch === " " ? " " : ch}
+                </motion.span>
+              ))}
+            </motion.span>
+          )}
         </AnimatePresence>
       </span>
     </span>

@@ -6,6 +6,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import TickerNumber from "./TickerNumber";
+import NetworkBg from "./backgrounds/NetworkBg";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -55,8 +56,10 @@ export default function Leadership() {
   return (
     <section
       id="leadership"
-      className="relative isolate scroll-mt-24 bg-[#FAFAFA] py-24 dark:bg-[#121215] sm:py-32"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-[#FAFAFA] py-24 dark:bg-[#121215] sm:py-32"
     >
+      <NetworkBg />
+
       <div className="mx-auto w-full max-w-6xl px-6 lg:px-8">
         {/* Header */}
         <motion.div
