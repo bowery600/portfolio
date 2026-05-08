@@ -128,7 +128,7 @@ export default function Experience() {
           </div>
           <h2 className="font-serif text-4xl font-semibold tracking-tight text-[#1C1C1C] dark:text-white sm:text-5xl md:text-6xl">
             A track record across{" "}
-            <em className="italic">capital, code, and clay</em>
+            <em className="italic">capital, code, and circuits</em>
             <span className="text-[#CFAE70]">.</span>
           </h2>
           <p className="max-w-xl text-base leading-relaxed text-[#475569] dark:text-white/65">
