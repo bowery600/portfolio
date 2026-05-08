@@ -35,3 +35,40 @@
     outline: none;
   }
 }
+
+@layer components {
+  /* Blue glassmorphism state — triggered when the custom cursor glow
+     reports it is hovering the header (class set on <html>). */
+  .cursor-over-header .site-header {
+    background-color: rgba(59, 130, 246, 0.18) !important;
+    backdrop-filter: saturate(160%) blur(22px);
+    -webkit-backdrop-filter: saturate(160%) blur(22px);
+    border-bottom-color: rgba(96, 165, 250, 0.45) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      inset 0 -1px 0 rgba(96, 165, 250, 0.25),
+      0 10px 30px -12px rgba(37, 99, 235, 0.45),
+      0 0 60px -10px rgba(59, 130, 246, 0.35) !important;
+  }
+  :is(.dark) .cursor-over-header .site-header {
+    background-color: rgba(37, 99, 235, 0.22) !important;
+    border-bottom-color: rgba(96, 165, 250, 0.55) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(147, 197, 253, 0.18),
+      inset 0 -1px 0 rgba(96, 165, 250, 0.35),
+      0 14px 40px -12px rgba(37, 99, 235, 0.6),
+      0 0 80px -10px rgba(59, 130, 246, 0.45) !important;
+  }
+  /* Subtle text tint shift so the change reads clearly */
+  .cursor-over-header .site-header a,
+  .cursor-over-header .site-header span {
+    transition: color 400ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cursor-over-header .site-header {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  }
+}

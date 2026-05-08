@@ -13,6 +13,7 @@ export default function WaveBg() {
   const reduce = useReducedMotion();
   const containerRef = useRef(null);
   const [visible, setVisible] = useState(false);
+  const [phase, setPhase] = useState(0);
 
   useEffect(() => {
     const node = containerRef.current;
@@ -27,6 +28,22 @@ export default function WaveBg() {
     io.observe(node);
     return () => io.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (reduce || !visible) return;
+
+    let frame = 0;
+    let start = 0;
+
+    const tick = (time) => {
+      if (!start) start = time;
+      setPhase((time - start) / 1000);
+      frame = window.requestAnimationFrame(tick);
+    };
+
+    frame = window.requestAnimationFrame(tick);
+    return () => window.cancelAnimationFrame(frame);
+  }, [reduce, visible]);
 
   const animate = !reduce && visible;
 
@@ -80,6 +97,7 @@ export default function WaveBg() {
               fill="url(#wave-fill-1)"
               stroke="#CFAE70"
               strokeOpacity={0.18}
+              phase={phase * 0.65}
             />
             <WaveShape
               y={130}
@@ -89,6 +107,7 @@ export default function WaveBg() {
               stroke="#CFAE70"
               strokeOpacity={0.18}
               offsetX={VIEW_W}
+              phase={phase * 0.65 + 0.9}
             />
           </motion.g>
 
@@ -108,6 +127,7 @@ export default function WaveBg() {
               stroke="#CFAE70"
               strokeOpacity={0.32}
               fill="none"
+              phase={phase * 0.9 + 0.35}
             />
             <WaveShape
               y={108}
@@ -117,6 +137,7 @@ export default function WaveBg() {
               strokeOpacity={0.32}
               fill="none"
               offsetX={VIEW_W}
+              phase={phase * 0.9 + 1.15}
             />
           </motion.g>
 
@@ -136,6 +157,7 @@ export default function WaveBg() {
               stroke="url(#wave-stroke-1)"
               strokeWidth={1.5}
               fill="none"
+              phase={phase * 1.15 + 0.2}
             />
             <WaveShape
               y={80}
@@ -145,6 +167,7 @@ export default function WaveBg() {
               strokeWidth={1.5}
               fill="none"
               offsetX={VIEW_W}
+              phase={phase * 1.15 + 1.05}
             />
           </motion.g>
         </g>
@@ -174,20 +197,25 @@ function WaveShape({
   strokeWidth = 1,
   fill,
   offsetX = 0,
+  phase = 0,
 }) {
   // Build a smooth sine path across VIEW_W using cubic Bezier segments.
   const segments = 8 * freq;
   const dx = VIEW_W / segments;
-  let d = `M ${offsetX} ${y}`;
+  const wobble = Math.sin(phase * 1.2 + offsetX * 0.003) * amp * 0.18;
+  let d = `M ${offsetX} ${y + wobble}`;
   for (let i = 0; i < segments; i++) {
     const x0 = offsetX + i * dx;
     const x1 = offsetX + (i + 1) * dx;
     const dir = i % 2 === 0 ? -1 : 1;
     const cx1 = x0 + dx / 2;
-    const cy1 = y + dir * amp;
+    const ripple1 = Math.sin(phase + i * 0.55) * amp * 0.14;
+    const cy1 = y + wobble + dir * amp + ripple1;
     const cx2 = x0 + dx / 2;
-    const cy2 = y + dir * amp;
-    d += ` C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x1} ${y}`;
+    const ripple2 = Math.sin(phase + i * 0.55 + 0.35) * amp * 0.14;
+    const cy2 = y + wobble + dir * amp + ripple2;
+    const endWobble = Math.sin(phase * 1.2 + (i + 1) * 0.35) * amp * 0.08;
+    d += ` C ${cx1} ${cy1}, ${cx2} ${cy2}, ${x1} ${y + endWobble}`;
   }
   if (fill && fill !== "none") {
     // close the area down to the bottom

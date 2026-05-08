@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import CursorGlow from "./components/CursorGlow";
 import Hero from "./components/Hero";
 import About from "./components/About";
 import TechStack from "./components/TechStack";
@@ -16,6 +17,7 @@ export default function App() {
       >
         Skip to content
       </a>
+      <CursorGlow />
       <Navbar />
       <main id="main">
         <Hero />

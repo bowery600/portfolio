@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Download, Menu, X, Sun, Moon } from "lucide-react";
-import { useTheme } from "../hooks/useTheme";
+import { Download, Menu, X } from "lucide-react";
 
 const LINKS = [
   { label: "About", href: "#about" },
@@ -16,7 +15,6 @@ export default function Navbar() {
   const reduce = useReducedMotion();
   const buttonRef = useRef(null);
   const firstLinkRef = useRef(null);
-  const { theme, toggle } = useTheme();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -49,8 +47,9 @@ export default function Navbar() {
       initial={reduce ? false : { y: -24, opacity: 0 }}
       animate={reduce ? undefined : { y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      data-scrolled={scrolled ? "true" : "false"}
       className={[
-        "fixed inset-x-0 top-0 z-50 transition-[background,backdrop-filter,border-color,box-shadow] duration-300",
+        "site-header fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color,box-shadow,color] duration-500 ease-out",
         scrolled
           ? "bg-white/70 dark:bg-[#0E0E10]/70 backdrop-blur-xl border-b border-black/[0.06] dark:border-white/[0.08] shadow-[0_1px_0_rgba(0,0,0,0.02),0_8px_24px_-12px_rgba(0,0,0,0.08)] dark:shadow-[0_1px_0_rgba(255,255,255,0.04),0_8px_24px_-12px_rgba(0,0,0,0.5)]"
           : "bg-white/40 dark:bg-[#0E0E10]/40 backdrop-blur-md border-b border-transparent",
@@ -115,8 +114,6 @@ export default function Navbar() {
 
         {/* Right cluster */}
         <div className="flex items-center gap-2">
-          <ThemeToggle theme={theme} toggle={toggle} reduce={reduce} />
-
           <a
             href="/Ethan-Hood-Resume.pdf"
             download
@@ -182,36 +179,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </motion.header>
-  );
-}
-
-function ThemeToggle({ theme, toggle, reduce }) {
-  const isDark = theme === "dark";
-  return (
-    <button
-      type="button"
-      onClick={toggle}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      aria-pressed={isDark}
-      title={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/[0.08] bg-white/60 text-[#1C1C1C] transition-all duration-200 hover:border-[#CFAE70]/60 hover:bg-white dark:border-white/[0.10] dark:bg-white/[0.04] dark:text-white dark:hover:border-[#CFAE70]/60 dark:hover:bg-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CFAE70] focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-[#0E0E10]"
-    >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span
-          key={isDark ? "moon" : "sun"}
-          initial={reduce ? { opacity: 0 } : { rotate: -90, opacity: 0, scale: 0.7 }}
-          animate={reduce ? { opacity: 1 } : { rotate: 0, opacity: 1, scale: 1 }}
-          exit={reduce ? { opacity: 0 } : { rotate: 90, opacity: 0, scale: 0.7 }}
-          transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-flex"
-        >
-          {isDark ? (
-            <Moon className="h-[18px] w-[18px] text-[#CFAE70]" strokeWidth={2} />
-          ) : (
-            <Sun className="h-[18px] w-[18px] text-[#CFAE70]" strokeWidth={2} />
-          )}
-        </motion.span>
-      </AnimatePresence>
-    </button>
   );
 }
